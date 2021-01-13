@@ -143,8 +143,9 @@ public class InteractionManager : MonoBehaviour
 
 	private void OnTriggerExit(Collider other)
 	{
+		//we don't want to reset interaction if we exited trigger other the the one we were currently interacting with
 		if(other.gameObject == _currentInteractableObject)
-			ResetInteraction();
+			ResetInteraction(); 
 	}
 
 	private void ResetInteraction()
