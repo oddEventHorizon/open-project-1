@@ -127,6 +127,11 @@ public class InteractionManager : MonoBehaviour
 			//Debug.Log("I triggered an NPC!");
 			DisplayInteractionUI();
 		}
+		else
+		{
+			return;
+		}
+		
 		_currentInteractableObject = other.gameObject;
 	}
 
@@ -138,11 +143,15 @@ public class InteractionManager : MonoBehaviour
 
 	private void OnTriggerExit(Collider other)
 	{
-		ResetInteraction();
+		if(other.gameObject == _currentInteractableObject)
+			ResetInteraction();
 	}
 
 	private void ResetInteraction()
 	{
+		if(_currentInteractableObject == null)
+			return;
+			
 		_potentialInteraction = InteractionType.None;
 		_currentInteractableObject = null;
 
